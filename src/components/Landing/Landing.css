@@ -1,0 +1,8 @@
+h1 {
+  background: black; /* Background color */
+  background-clip: text; /* Clip background to text */
+  -webkit-text-stroke-color: transparent; /* Make text stroke color transparent */
+  -webkit-text-stroke-width: calc(1em / 16); /* Set text stroke width */
+  -webkit-background-clip: text; /* Clip background to text for WebKit browsers */
+  color: #000119; /* Text color */
+}

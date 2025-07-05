@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
+body {
+  cursor: url('/cursor-default.png') 1 1, auto;
+}
+
+a:hover, button:hover, .hover-target:hover {
+  cursor: url('/cursor-hover.png') 1 1, pointer;
+}
