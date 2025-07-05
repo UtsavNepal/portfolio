@@ -6,8 +6,8 @@ const Skill = () => {
     "skills": 
     [
       {
-        "Backend":".Net, Node, Django,Next js",
-        "Frontend":"React, Tailwind, TS, HTML, CSS,Js",
+        "Backend":".Net,Django,Next js",
+        "Frontend":"React, Tailwind, TS, Js, HTML, CSS, Bootstrap",
         "deploy":"Git, Jenkins, Docker" 
       }
     ],

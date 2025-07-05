@@ -17,7 +17,7 @@ const experienceVariants = {
 
 const ExperienceItem = ({ role, company, location, date, description, techStack, index }) => (
   <motion.div
-    className="bg-white text-black p-6 rounded-xl shadow-md border-[3px] border-black p-2 border-solid font-bold text-xl rounded-l-2xl hover:shadow-black hover:shadow-2xl"
+    className="bg-[#D7D7D7] text-black p-6 rounded-xl shadow-md border-4 border-black hover:shadow-black hover:shadow-xl transition-all"
     custom={index}
     initial="hidden"
     whileInView="visible"
@@ -30,8 +30,8 @@ const ExperienceItem = ({ role, company, location, date, description, techStack,
         <Calendar className="h-4 w-4 mr-1" /> {date}
       </span>
     </div>
-    <p className="text-sm text-gray-700 mb-1">{company}</p>
-    <div className="flex items-center text-sm text-gray-700 mb-4">
+    <p className="text-sm text-gray-800 mb-1">{company}</p>
+    <div className="flex items-center text-sm text-gray-800 mb-4">
       <MapPin className="h-4 w-4 mr-1" /> {location}
     </div>
     <p className="text-sm text-gray-800 mb-4">{description}</p>
@@ -52,23 +52,22 @@ const Experience = () => {
       company: 'Kutumba Tech',
       location: 'Hetauda',
       date: 'June 2024-current',
-      description:
-        'Full Stack Developer on Online Health Care System developers and implemented CI/CD pipelines.',
-       techStack: ['React', '.Net', 'SQl', 'TypeScript'],
+      description: 'Full Stack Developer on Online Health Care System developers and implemented CI/CD pipelines.',
+      techStack: ['React', '.Net', 'SQl', 'TypeScript'],
     }
   ];
 
   return (
-    <div id="experiences" className="bg-white text-black py-20 px-6 md:px-16"   >
+    <div id="experiences" className="bg-[#D7D7D7] text-black py-20 px-6 md:px-16">
       <motion.div
         initial={{ opacity: 0, y: -40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{  }}
+        viewport={{}}
         transition={{ duration: 0.8 }}
         className="text-center mb-14"
       >
         <h2 className="text-4xl md:text-5xl font-bold">Professional Experience</h2>
-        <p className="text-gray-700 mt-2 text-lg">A timeline of my professional journey and key roles</p>
+        <p className="text-gray-800 mt-2 text-lg">A timeline of my professional journey and key roles</p>
       </motion.div>
       <div className="max-w-4xl mx-auto grid gap-10">
         {experiences.map((exp, index) => (

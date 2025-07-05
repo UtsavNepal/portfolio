@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        'custom-gray': '#D7D7D7',
+      }
        },
         
   },

@@ -1,6 +1,4 @@
-
 import Marquee from "react-fast-marquee";
- 
 import React from 'react';
 import { FaReact, FaDocker, FaAws, FaGitAlt, FaLinux, FaPython } from 'react-icons/fa';
 import { SiDotnet, SiMongodb, SiPostgresql, SiJenkins, SiTypescript, SiNextdotjs, SiTailwindcss, SiDjango, SiRabbitmq, SiTrivy, SiSonarqube } from 'react-icons/si';
@@ -24,22 +22,19 @@ const Label = () => {
   ];
 
   return (
-    <div className="w-full hover-target  overflow-hidden   py-6">
-      <div className="relative  h-full">
-        {/* Duplicate icons array to create a seamless loop */}
-  <Marquee speed={40} loop={0} play={true}>           {[...icons, ...icons].map(({ Icon, name }, index) => (
-           <div className="p-1 bg-white">
-            <div
-              key={`${name}-${index}`}
-              className="flex items-center mx-4 p-5 px-10     rounded-lg    bg-white   border-2 border-black  hover:shadow-2xl hover:shadow-black   duration-300"
-            >
-              <Icon className=" text-5xl text-black mr-2" />
-              <span className="text-black font-semibold text-lg">{name}</span>
-            </div></div>
+    <div className="w-full overflow-hidden py-6 bg-[#D7D7D7]">
+      <div className="relative h-full">
+        <Marquee speed={40} loop={0} play={true}>
+          {[...icons, ...icons].map(({ Icon, name }, index) => (
+            <div className="p-1 bg-[#D7D7D7]" key={`${name}-${index}`}>
+              <div className="flex items-center mx-4 p-5 px-10 rounded-lg bg-[#D7D7D7] border-4 border-black hover:shadow-black hover:shadow-xl transition-all duration-300">
+                <Icon className="text-5xl text-black mr-2" />
+                <span className="text-black font-semibold text-lg">{name}</span>
+              </div>
+            </div>
           ))}
         </Marquee>
       </div>
-      
     </div>
   );
 };
