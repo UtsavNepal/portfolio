@@ -11,8 +11,8 @@ const AboutMe = () => {
   };
 
   return (
-    <section className="py-16 px-4 max-w-6xl mx-auto md:h-screen" id="about">
-      <div className="grid lg:grid-cols-2 gap-12 items-center h-full">
+    <section className="py-16 px-4 max-w-5xl mx-auto md:h-screen flex items-center" id="about">
+      <div className="grid lg:grid-cols-2 gap-4 md:gap-8 items-center w-full">
         {/* Left Column - Image and Download */}
         <div className="space-y-6 flex flex-col items-center lg:items-start">
           <div className="relative">
@@ -38,7 +38,7 @@ const AboutMe = () => {
         </div>
 
         {/* Right Column - About Content */}
-        <div className="space-y-9 flex flex-col justify-center h-full">
+        <div className="space-y-6 md:space-y-9 flex flex-col justify-center">
           <div>
             <h1 className="text-4xl font-bold text-gray-900 mb-2">Hi, I'm Utsav Nepal</h1>
             <h2 className="text-xl text-gray-600 mb-6">Full-Stack Developer & DevOps Enthusiast</h2>
@@ -63,5 +63,4 @@ const AboutMe = () => {
     </section>
   );
 };
-
 export default AboutMe;
