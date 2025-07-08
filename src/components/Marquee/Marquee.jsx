@@ -1,5 +1,4 @@
 import Marquee from "react-fast-marquee";
-import React from 'react';
 import { FaReact, FaDocker, FaAws, FaGitAlt, FaLinux, FaPython } from 'react-icons/fa';
 import { SiDotnet, SiMongodb, SiPostgresql, SiJenkins, SiTypescript, SiNextdotjs, SiTailwindcss, SiDjango, SiRabbitmq, SiTrivy, SiSonarqube } from 'react-icons/si';
 
