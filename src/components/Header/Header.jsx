@@ -1,44 +1,82 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { IoMenu } from "react-icons/io5";
-import { Link } from "react-scroll";
+import { Link as ScrollLink } from "react-scroll";
+
+const navLinks = [
+  { name: "Home", to: "home" },
+  { name: "About", to: "about" },
+  { name: "Skill", to: "skill" },
+  { name: "Experience", to: "experiences" },
+  { name: "Project", to: "projects" }
+];
 
 const Header = () => {
-    const [expand, setExpand] = useState(false);
-    
-    const toggleExpand = () => {
-        setExpand(!expand);
-    };
+  const [menuOpen, setMenuOpen] = useState(false);
 
-    useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth > 640) {
-                setExpand(false);
-            }
-        };
-
-        window.addEventListener('resize', handleResize);
-        handleResize();
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
-
-    return (
-        <div className={`${expand ? "h-48 border-t-4 border-black" : ""} fixed bottom-0 sm:top-0 sm:flex sm:justify-between z-50 w-full h-16 bg-[#D7D7D7] backdrop-filter backdrop-blur-lg bg-opacity-90`}>
-            <div className='flex justify-between capitalize text-lg font-semibold py-4 sm:px-10 md:px-16 px-5'>
-                <span className={`${expand ? "hidden" : ""} hover:cursor-pointer text-black`}>Utsav</span>
-                <button className={`${expand ? "fixed bottom-2 right-2 p-[12px]" : ""} sm:hidden items-center justify-center pt-2 text-black`} onClick={toggleExpand}><IoMenu /></button>
-            </div>
-            <div className={`sm:flex md:gap-6 sm:gap-4 py-4 text-center md:pr-56 sm:px-16 ${expand ? "grid grid-cols-2" : "hidden"}`}>
-                {["Home", "about", "Skill","Experiences", "Projects", "Contact"].map((item, index) => (
-                    <div className={`${expand ? "pb-2" : ""} capitalize text-lg font-semibold hover:cursor-pointer text-black hover:text-gray-700`} key={index}>
-                        <Link spy={true} smooth={true} offset={0} duration={500} to={`${item.toLowerCase()}`}>{item}</Link>
-                    </div>
-                ))}
-            </div>
+  return (
+    <header className="fixed w-full top-0 left-0 z-50 bg-black">
+      <div className="flex items-center justify-between px-4 md:px-12 py-4">
+        <span className="font-bold text-lg text-white">Utsav</span>
+        <nav className="hidden md:flex items-center gap-8">
+          {navLinks.map(link => (
+            <ScrollLink
+              key={link.to}
+              to={link.to}
+              smooth={true}
+              duration={500}
+              offset={-70}
+              className="text-white font-medium cursor-pointer hover:underline"
+            >
+              {link.name}
+            </ScrollLink>
+          ))}
+          <ScrollLink
+            to="contact"
+            smooth={true}
+            duration={500}
+            offset={-70}
+            className="ml-4 px-5 py-2 bg-white text-black font-medium rounded-full shadow hover:bg-gray-200 transition cursor-pointer"
+          >
+            CONTACT ME
+          </ScrollLink>
+        </nav>
+        {/* Hamburger Icon */}
+        <button className="md:hidden text-white text-3xl" onClick={() => setMenuOpen(!menuOpen)}>
+          <IoMenu />
+        </button>
+      </div>
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <div className="md:hidden bg-black w-full px-6 py-4 flex flex-col gap-3 border-t-2 border-cyan-400">
+          {navLinks.map(link => (
+            <ScrollLink
+              key={link.to}
+              to={link.to}
+              smooth={true}
+              duration={500}
+              offset={-70}
+              className="text-white font-medium cursor-pointer py-2"
+              onClick={() => setMenuOpen(false)}
+            >
+              {link.name}
+            </ScrollLink>
+          ))}
+          <ScrollLink
+            to="contact"
+            smooth={true}
+            duration={500}
+            offset={-70}
+            className="px-5 py-2 mt-2 bg-white text-black font-medium rounded-full shadow hover:bg-gray-200 transition cursor-pointer"
+            onClick={() => setMenuOpen(false)}
+          >
+            CONTACT ME
+          </ScrollLink>
         </div>
-    );
-}
+      )}
+      {/* Bottom border highlight for mobile */}
+      <div className="md:hidden h-1 w-full"></div>
+    </header>
+  );
+};
 
 export default Header;

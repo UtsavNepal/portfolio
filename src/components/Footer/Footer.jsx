@@ -1,23 +1,44 @@
 import React from 'react';
-import { FaFacebook, FaInstagram, FaTwitter,FaGithub,FaLinkedin } from 'react-icons/fa';
- 
+import { FaFacebook, FaInstagram, FaGithub, FaLinkedin } from 'react-icons/fa';
+
 const Footer = () => {
   return (
-    <div className='max-h-[45vh] border-t-4 border-black mt-44 md:mt-0 w-full bg-[#D7D7D7]' id='contact'>
-      <div className='max-w-[1140px] h-full m-auto flex flex-col items-center'>
-        <h1 className='p-3 sm:p-5 md:p-10 text-lg sm:text-xl md:text-3xl xl:text-5xl tracking-wide font-bold text-black'>Utsav Nepal</h1>
-        <ul className='gap-8 flex pb-3 sm:pb-5 md:pb-10 text-lg sm:text-xl md:text-1xl font-mono xl:text-2xl tracking-wide'>
-          <li className="text-black hover:text-gray-700 cursor-pointer">About</li>
-          <li className="text-black hover:text-gray-700 cursor-pointer">Project</li>
-          <li className="text-black hover:text-gray-700 cursor-pointer">Skill</li>
+    <div className='border-t-4 border-white w-full bg-[#171717] py-8' id='contact'>
+      <div className='max-w-[1140px] mx-auto px-4 flex flex-col items-center'>
+        {/* Name with responsive sizing */}
+        <h1 className='text-xl md:text-2xl xl:text-3xl font-bold text-white mb-4'>
+          Utsav Nepal
+        </h1>
+
+        {/* Navigation links - single row */}
+        <ul className='flex gap-4 sm:gap-6 mb-4 sm:mb-6'>
+          {['About', 'Project', 'Skill'].map((item) => (
+            <li key={item} className="text-white hover:text-gray-300 cursor-pointer text-sm sm:text-base">
+              {item}
+            </li>
+          ))}
         </ul>
-        <div className='flex gap-4 text-lg sm:text-xl md:text-3xl pb-10'>
-          <a href="https://www.facebook.com/utsav.simpleguy" className="text-black hover:text-gray-700"> <FaFacebook /></a>
-          <a href="https://www.instagram.com/mr.utsavnepal__/" className="text-black hover:text-gray-700"> <FaInstagram /></a>
-          <a href="https://www.linkedin.com/in/utsav-npl-153409289/" className="text-black hover:text-gray-700"> <FaLinkedin /></a>
-          <a href="https://github.com/UtsavNepal" className="text-black hover:text-gray-700"> <FaGithub /></a>
+
+        {/* Social icons - compact layout */}
+        <div className='flex gap-3 sm:gap-4 mb-4 sm:mb-6 text-xl'>
+          <a href="https://www.facebook.com/utsav.simpleguy" aria-label="Facebook" className="text-white hover:text-gray-300 transition-colors">
+            <FaFacebook />
+          </a>
+          <a href="https://www.instagram.com/mr.utsavnepal__/" aria-label="Instagram" className="text-white hover:text-gray-300 transition-colors">
+            <FaInstagram />
+          </a>
+          <a href="https://www.linkedin.com/in/utsav-npl-153409289/" aria-label="LinkedIn" className="text-white hover:text-gray-300 transition-colors">
+            <FaLinkedin />
+          </a>
+          <a href="https://github.com/UtsavNepal" aria-label="GitHub" className="text-white hover:text-gray-300 transition-colors">
+            <FaGithub />
+          </a>
         </div>
-        <p className='p-5 text-sm font-bold text-black'>©copyright expire 2025. all rights reserved</p>
+
+        {/* Copyright - smaller and subtle */}
+        <p className='text-xs text-gray-400'>
+          © 2025 Utsav Nepal. All rights reserved.
+        </p>
       </div>
     </div>
   )

@@ -28,7 +28,7 @@ const Portfolio = () => {
   const filteredData = filter === 'All' ? data : data.filter(item => item.cat === filter);
 
   return (
-    <div id="projects" className="bg-[#D7D7D7] text-black py-20 px-6 md:px-16">
+    <div id="projects" className="bg-[#171717] text-white py-20 px-6 md:px-16">
       <motion.div
         initial={{ opacity: 0, y: -40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -37,7 +37,7 @@ const Portfolio = () => {
         className="text-center mb-4"
       >
         <h2 className="text-4xl md:text-5xl font-bold">Projects</h2>
-        <p className="text-gray-800 mt-2 text-lg">Most recent work</p>
+        <p className="text-gray-300 mt-2 text-lg">Most recent work</p>
       </motion.div>
 
       <div className="flex flex-wrap justify-center gap-2 mb-10">
@@ -45,8 +45,8 @@ const Portfolio = () => {
           <button
             key={cat}
             onClick={() => setFilter(cat)}
-            className={`border-4 border-black px-4 py-2 text-sm sm:text-base font-medium rounded-full transition ${
-              filter === cat ? 'bg-black text-white' : 'bg-[#D7D7D7] text-black hover:bg-gray-300'
+            className={`border-4 border-white px-4 py-2 text-sm sm:text-base font-medium rounded-full transition ${
+              filter === cat ? 'bg-white text-[#171717]' : 'bg-[#232323] text-white hover:bg-gray-800'
             }`}
           >
             {cat}
@@ -66,7 +66,7 @@ const Portfolio = () => {
             viewport={{ once: true }}
             variants={projectVariants}
           >
-            <div className="border-4 border-black hover:shadow-black hover:shadow-xl rounded-xl overflow-hidden hover:scale-[1.02] transition-transform bg-[#D7D7D7]">
+            <div className="border-4 border-white hover:shadow-white hover:shadow-xl rounded-xl overflow-hidden hover:scale-[1.02] transition-transform bg-[#232323]">
               <div className="h-[160px] sm:h-[180px]">
                 <img
                   src={item.src}
@@ -75,8 +75,8 @@ const Portfolio = () => {
                 />
               </div>
               <div className="p-4">
-                <h3 className="font-semibold text-lg mb-2">{item.title}</h3>
-                <div className="flex items-center text-sm text-gray-800">
+                <h3 className="font-semibold text-lg mb-2 text-white">{item.title}</h3>
+                <div className="flex items-center text-sm text-gray-300">
                   <span>Demo</span>
                   <FaArrowUpRightFromSquare className="ml-2" />
                 </div>

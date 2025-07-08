@@ -17,7 +17,7 @@ const experienceVariants = {
 
 const ExperienceItem = ({ role, company, location, date, description, techStack, index }) => (
   <motion.div
-    className="bg-[#D7D7D7] text-black p-6 rounded-xl shadow-md border-4 border-black hover:shadow-black hover:shadow-xl transition-all"
+    className="bg-[#171717] text-white p-6 rounded-xl shadow-md border-4 border-white hover:shadow-white hover:shadow-xl transition-all"
     custom={index}
     initial="hidden"
     whileInView="visible"
@@ -26,18 +26,18 @@ const ExperienceItem = ({ role, company, location, date, description, techStack,
   >
     <div className="flex justify-between items-center mb-2">
       <h3 className="text-xl font-semibold">{role}</h3>
-      <span className="flex items-center text-sm bg-black/10 text-black px-3 py-1 rounded-full">
+      <span className="flex items-center text-sm bg-white/10 text-white px-3 py-1 rounded-full">
         <Calendar className="h-4 w-4 mr-1" /> {date}
       </span>
     </div>
-    <p className="text-sm text-gray-800 mb-1">{company}</p>
-    <div className="flex items-center text-sm text-gray-800 mb-4">
+    <p className="text-sm text-gray-300 mb-1">{company}</p>
+    <div className="flex items-center text-sm text-gray-300 mb-4">
       <MapPin className="h-4 w-4 mr-1" /> {location}
     </div>
-    <p className="text-sm text-gray-800 mb-4">{description}</p>
+    <p className="text-sm text-gray-300 mb-4">{description}</p>
     <div className="flex flex-wrap">
       {techStack.map((tech, i) => (
-        <span key={i} className="bg-black/10 text-sm text-black px-3 py-1 rounded-full mr-2 mt-2 inline-block">
+        <span key={i} className="bg-white/10 text-sm text-white px-3 py-1 rounded-full mr-2 mt-2 inline-block">
           {tech}
         </span>
       ))}
@@ -58,7 +58,7 @@ const Experience = () => {
   ];
 
   return (
-    <div id="experiences" className="bg-[#D7D7D7] text-black py-20 px-6 md:px-16">
+    <div id="experiences" className="bg-[#171717] text-white py-20 px-6 md:px-16">
       <motion.div
         initial={{ opacity: 0, y: -40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -67,7 +67,7 @@ const Experience = () => {
         className="text-center mb-14"
       >
         <h2 className="text-4xl md:text-5xl font-bold">Professional Experience</h2>
-        <p className="text-gray-800 mt-2 text-lg">A timeline of my professional journey and key roles</p>
+        <p className="text-gray-300 mt-2 text-lg">A timeline of my professional journey and key roles</p>
       </motion.div>
       <div className="max-w-4xl mx-auto grid gap-10">
         {experiences.map((exp, index) => (

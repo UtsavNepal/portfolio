@@ -6,7 +6,7 @@ import P from './components/P';
 
 const App = () => {
   return (
-    <div className="bg-[#D7D7D7] min-h-screen">
+    <div className="bg-[#171717] text-white min-h-screen">
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
