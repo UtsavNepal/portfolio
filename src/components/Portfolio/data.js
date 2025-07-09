@@ -50,7 +50,7 @@ const data = [
         src: bf,
         title: "React Frontend",
         cat: "Frontend",
-        link: "https://beach-frontend.vercel.app/"
+        link: "https://computer-frontend-snowy.vercel.app/"
     }
 ];
  
