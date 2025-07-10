@@ -3,11 +3,12 @@ import { IoMenu } from "react-icons/io5";
 import { Link as ScrollLink } from "react-scroll";
 
 const navLinks = [
-  { name: "Home", to: "home" },
+  { name: "Home", to: "about" },
   { name: "About", to: "about" },
-  { name: "Skill", to: "skill" },
+ 
   { name: "Experience", to: "experiences" },
-  { name: "Project", to: "projects" }
+  { name: "Project", to: "projects" },
+   { name: "Skill", to: "skill" }
 ];
 
 const Header = () => {
