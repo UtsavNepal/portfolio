@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import who from './Who.png';
+import whoDesktop from './Who-a.png';
 import CV from './CV.pdf';
 import { IoDocumentTextOutline, IoMailOutline, IoLocationOutline } from "react-icons/io5";
 import { FaGithub, FaInstagram, FaLinkedin, FaFacebook } from 'react-icons/fa';
@@ -67,7 +68,7 @@ const AboutMe = () => {
                   onClick={() => setShowAbout(true)}
                   className="px-4 py-2 text-sm font-semibold bg-white/90 text-black rounded-full shadow-lg hover:bg-gray-200 transition-all"
                 >
-                  About Me &gt;
+                  About Me
                 </button>
                 <a
                   href={CV}
@@ -159,9 +160,9 @@ const AboutMe = () => {
       <div className="hidden md:flex w-1/2 bg-[#171717] flex-col justify-center items-center relative overflow-hidden">
         <div className="absolute inset-0 flex items-center justify-center p-8">
           <img
-            src={who}
+            src={whoDesktop}
             alt="Profile"
-            className="object-cover rounded-2xl shadow-2xl w-full h-full max-w-[520px] max-h-[620px]"
+            className=" w-full h-full max-w-[520px] max-h-[750px] object-cover rounded-lg shadow-lg"
             style={{
               objectPosition: 'center center',
               filter: 'brightness(1.05) contrast(1.05)'
