@@ -31,7 +31,7 @@ const AboutMe = () => {
       <div
         className="absolute inset-0 w-full h-full z-0 md:hidden"
         style={{
-          backgroundImage: `url(${who})`,
+          backgroundImage: `url(${whoDesktop})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           filter: "brightness(0.8) contrast(1.1)"
@@ -114,8 +114,23 @@ const AboutMe = () => {
         )}
       </div>
 
-      {/* Desktop Content */}
-      <div className="hidden md:flex w-1/2 bg-[#D7D7D7] flex-col justify-center pl-20 pr-12 py-12 relative z-10" style={{clipPath: 'polygon(0 0, 100% 0, 90% 100%, 0% 100%)'}}>
+      {/* Desktop Content - Image section now on the left */}
+      <div className="hidden md:flex w-1/2 bg-[#171717] flex-col justify-center items-center relative overflow-hidden">
+        <div className="absolute inset-0 flex items-center justify-center p-8">
+          <img
+            src={whoDesktop}
+            alt="Profile"
+            className=" "
+            style={{
+              objectPosition: 'center center',
+              filter: 'brightness(1.05) contrast(1.05)'
+            }}
+          />
+        </div>
+      </div>
+      
+      {/* Desktop Content - Text section now on the right */}
+      <div className="hidden md:flex w-1/2 bg-[#D7D7D7] flex-col justify-center pr-12 pl-16 py-12 relative z-10" style={{clipPath: 'polygon(10% 0, 100% 0, 100% 100%, 0% 100%)'}}>
         <div>
           <h1 className="text-4xl md:text-5xl font-bold text-black mb-2">Hi, I'm Utsav Nepal</h1>
           <h2 className="text-xl md:text-2xl text-gray-700 mb-4 font-medium">Full Stack Developer and DevOps Enthusiast</h2>
@@ -154,20 +169,6 @@ const AboutMe = () => {
               <span className="text-gray-700 font-medium">Hetauda, Nepal</span>
             </div>
           </div>
-        </div>
-      </div>
-      
-      <div className="hidden md:flex w-1/2 bg-[#171717] flex-col justify-center items-center relative overflow-hidden">
-        <div className="absolute inset-0 flex items-center justify-center p-8">
-          <img
-            src={whoDesktop}
-            alt="Profile"
-            className=" w-full h-full max-w-[520px] max-h-[750px] object-cover rounded-lg shadow-lg"
-            style={{
-              objectPosition: 'center center',
-              filter: 'brightness(1.05) contrast(1.05)'
-            }}
-          />
         </div>
       </div>
     </section>
