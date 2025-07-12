@@ -34,11 +34,11 @@ const AboutMe = () => {
           backgroundImage: `url(${whoDesktop})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          filter: "brightness(0.8) contrast(1.1)"
+          filter: "brightness(1.05) contrast(1.05)"
         }}
         aria-hidden="true"
       />
-      <div className="absolute inset-0 w-full h-full z-0 bg-black/40 md:hidden" aria-hidden="true" />
+      <div className="absolute inset-0 w-full h-full z-0 bg-black/20 md:hidden" aria-hidden="true" />
 
       {/* Mobile Content */}
       <div className="md:hidden relative w-full flex flex-col min-h-screen justify-end z-10">
