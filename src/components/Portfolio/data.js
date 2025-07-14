@@ -10,6 +10,14 @@ import Devops from '../../Public/Images/Devops.png'
 
 
 const data = [
+    
+    {
+        id: "5",
+        src: bf,
+        title: "React Frontend",
+        cat: "Frontend",
+        link: "https://computer-frontend-snowy.vercel.app/"
+    },
     {
         id: "1",
          src: p,

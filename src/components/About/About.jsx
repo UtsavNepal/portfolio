@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import who from './Who.png';
 import whoDesktop from './Who-a.png';
-import CV from './CV.pdf';
+import CV from './UtsavNepal-Tech-CV.pdf';
 import { IoDocumentTextOutline, IoMailOutline, IoLocationOutline } from "react-icons/io5";
 import { FaGithub, FaInstagram, FaLinkedin, FaFacebook } from 'react-icons/fa';
 
