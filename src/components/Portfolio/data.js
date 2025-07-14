@@ -36,7 +36,7 @@ const data = [
         id: "3",
         src: jenkins,
         title: "CICD with Jenkins",
-        cat: "Frontend",
+        cat: "Devops",
         link: "https://www.linkedin.com/posts/utsav-npl-153409289_ciabrcd-devops-gitlab-activity-7334063974600077312-_0NA/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEYBfY8BCjhqU0WCHusoUM8MWdxefhHjdS4"
     },
     {
@@ -50,15 +50,22 @@ const data = [
         id: "4",
         src: login,
         title: ".NET LMS with clean arch",
-        cat: "Frontend",
+        cat: "Backend",
         link: "https://github.com/UtsavNepal/dotnetLms"
     },
     {
-        id: "5",
-        src: bf,
-        title: "React Frontend",
-        cat: "Frontend",
-        link: "https://computer-frontend-snowy.vercel.app/"
+        id: "7",
+        src: login,
+        title: "Express.js BookStore",
+        cat: "Backend",
+        link: "https://github.com/UtsavNepal/NodeJSBookStore"
+    },
+    {
+        id: "8",
+        src: login,
+        title: "Next.js Social Media Backend",
+        cat: "Backend",
+        link: "https://github.com/UtsavNepal/NextJSbackendWorldbook.git"
     }
 ];
  

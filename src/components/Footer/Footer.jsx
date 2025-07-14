@@ -11,13 +11,13 @@ const Footer = () => {
         </h1>
 
         {/* Navigation links - single row */}
-        <ul className='flex gap-4 sm:gap-6 mb-4 sm:mb-6'>
+        {/* <ul className='flex gap-4 sm:gap-6 mb-4 sm:mb-6'>
           {['About', 'Project', 'Skill'].map((item) => (
             <li key={item} className="text-white hover:text-gray-300 cursor-pointer text-sm sm:text-base">
               {item}
             </li>
           ))}
-        </ul>
+        </ul> */}
 
         {/* Social icons - compact layout */}
         <div className='flex gap-3 sm:gap-4 mb-4 sm:mb-6 text-xl'>
