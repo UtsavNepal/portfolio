@@ -6,6 +6,7 @@ import Footer from './Footer/Footer'
 import Experience from './Experience/Experience'
 import Label from './Marquee/Marquee'
 
+
 const Home = () => {
   return (
     <div className='bg-[#171717] text-white hover-target'>
@@ -16,6 +17,7 @@ const Home = () => {
      <Portfolio />
      <Label />
      <Skill />
+    
      <Footer />
     </div>
   )
