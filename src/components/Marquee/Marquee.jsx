@@ -9,7 +9,7 @@ const Label = () => {
     { Icon: FaGitAlt, name: 'Git' },
     { Icon: FaLinux, name: 'Linux' },
     { Icon: FaPython, name: 'Python' },
-    { Icon: SiDotnet, name: '.NET' },
+    { Icon: SiDotnet, name: '' },
     { Icon: SiMongodb, name: 'MongoDB' },
     { Icon: SiPostgresql, name: 'PostgreSQL' },
     { Icon: SiJenkins, name: 'Jenkins' },
