@@ -70,10 +70,21 @@ const Experience = () => {
       role: 'Full Stack Developer',
       company: 'Kutumba Tech',
       location: 'Hetauda',
-      date: 'June 2023 - Present',
+      date: 'April 2024 - June 2025',
       description: 'Contributing to Online Health Care System and Logistics system as a full stack developer, building scalable solutions with modern technologies.',
       techStack: ['React', '.Net', 'SQl', 'TypeScript', 'Tailwind', 'Docker'],
+    },
+    
+      {
+      role: 'Full Stack Developer',
+      company: 'Avenir Tech',
+      location: 'Hetauda',
+      date: 'June 2025 - Present',
+      description: 'Contributing to Hosting Ho and Tixify as a full stack developer, building scalable solutions with modern technologies.',
+      techStack: ['Next js', 'Fast api', 'Postgres', 'TypeScript', 'Tailwind', 'Docker'],
     }
+    
+
   ];
 
   return (
