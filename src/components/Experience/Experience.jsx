@@ -70,7 +70,7 @@ const Experience = () => {
       role: 'Full Stack Developer',
       company: 'Kutumba Tech',
       location: 'Hetauda',
-      date: 'June 2024 - Present',
+      date: 'June 2023 - Present',
       description: 'Contributing to Online Health Care System and Logistics system as a full stack developer, building scalable solutions with modern technologies.',
       techStack: ['React', '.Net', 'SQl', 'TypeScript', 'Tailwind', 'Docker'],
     }

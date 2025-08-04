@@ -12,6 +12,13 @@ import Devops from '../../Public/Images/Devops.png'
 const data = [
     
     {
+        id: "8",
+        src: login,
+        title: "Next.js Social Media Backend",
+        cat: "Backend",
+        link: "https://github.com/UtsavNepal/NextJSbackendWorldbook.git"
+    },
+    {
         id: "5",
         src: bf,
         title: "React Frontend",
@@ -23,7 +30,7 @@ const data = [
          src: p,
         title: "React Nextjs social media",
         cat: "Fullstack",
-        link: "https://worldbook.up.railway.app/welcome",
+        link: "https://www.linkedin.com/posts/utsav-npl-153409289_django-react-cloudinary-activity-7341788743638421504-sL-W/?utm_source=share&utm_medium=member_android&rcm=ACoAAEYBfY8BCjhqU0WCHusoUM8MWdxefhHjdS4",
     },
     {
         id: "2",
@@ -59,13 +66,6 @@ const data = [
         title: "Express.js BookStore",
         cat: "Backend",
         link: "https://github.com/UtsavNepal/NodeJSBookStore"
-    },
-    {
-        id: "8",
-        src: login,
-        title: "Next.js Social Media Backend",
-        cat: "Backend",
-        link: "https://github.com/UtsavNepal/NextJSbackendWorldbook.git"
     }
 ];
  
