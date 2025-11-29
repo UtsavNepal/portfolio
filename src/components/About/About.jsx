@@ -130,7 +130,13 @@ const AboutMe = () => {
       </div>
       
       {/* Desktop Content - Text section now on the right */}
-      <div className="hidden md:flex w-1/2 bg-[#D7D7D7] flex-col justify-center pr-12 pl-16 py-12 relative z-10" style={{clipPath: 'polygon(10% 0, 100% 0, 100% 100%, 0% 100%)'}}>
+      <div
+        className="hidden md:flex w-1/2 bg-[#D7D7D7] flex-col justify-center pr-12 pl-16 py-12 relative z-10"
+        style={{
+          clipPath: 'polygon(10% 0, 100% 0, 100% 100%, 0% 100%)',
+          paddingLeft: 'calc(4.625rem + 20px)', // 64px (pl-16) + 10px + 20px = 94px
+        }}
+      >
         <div>
           <h1 className="text-4xl md:text-5xl font-bold text-black mb-2">Hi, I'm Utsav Nepal</h1>
           <h2 className="text-xl md:text-2xl text-gray-700 mb-4 font-medium">Full Stack Developer and DevOps Enthusiast</h2>

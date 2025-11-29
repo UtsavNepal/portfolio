@@ -29,14 +29,26 @@ const Contact = () => {
     setSubmitStatus(null);
 
 
-    emailjs.init(import.meta.env.VITE_EMAILJS_USER_ID);
+    // Type assertion for Vite env variables
+    const meta = import.meta as any;
+    const userID = meta.env.VITE_EMAILJS_USER_ID;
+    const serviceID = meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateID = meta.env.VITE_EMAILJS_TEMPLATE_ID;
 
+    if (!userID || !serviceID || !templateID) {
+      console.error('EmailJS environment variables are not set');
+      setSubmitStatus('error');
+      setIsSubmitting(false);
+      return;
+    }
+
+    emailjs.init(userID);
 
     emailjs.send(
-  import.meta.env.VITE_EMAILJS_SERVICE_ID,
-  import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-  formData
-)
+      serviceID,
+      templateID,
+      formData
+    )
     .then((response) => {
       console.log('SUCCESS!', response.status, response.text);
       setSubmitStatus('success');
@@ -63,14 +75,14 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="min-h-screen py-20 px-4 md:px-12" style={{ backgroundColor: '#171717' }}>
+    <section id="contact" className="py-8 md:py-12 px-4 md:px-8" style={{ backgroundColor: '#171717' }}>
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">Contact Me</h2>
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-6 md:mb-8 lg:mb-12 text-white">Contact Me</h2>
         
-        <div className="flex flex-col lg:flex-row gap-8">
+        <div className="flex flex-col lg:flex-row gap-4 md:gap-6 lg:gap-8">
           {/* Contact Form */}
-          <div className="w-full lg:w-1/2 bg-gray-800 p-8 rounded-lg shadow-xl border border-gray-700">
-            <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="w-full lg:w-1/2 bg-gray-800 p-4 sm:p-6 md:p-8 rounded-lg shadow-xl border border-gray-700">
+            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
                   Your Name
@@ -142,10 +154,10 @@ const Contact = () => {
           </div>
           
           {/* Contact Information */}
-          <div className="w-full lg:w-1/2 bg-gray-800 p-8 rounded-lg shadow-xl border border-gray-700">
-            <h3 className="text-2xl font-bold mb-6 text-white">Get in Touch</h3>
+          <div className="w-full lg:w-1/2 bg-gray-800 p-4 sm:p-6 md:p-8 rounded-lg shadow-xl border border-gray-700">
+            <h3 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-white">Get in Touch</h3>
             
-            <div className="space-y-6">
+            <div className="space-y-4 md:space-y-6">
               <div className="flex items-start gap-4">
                 <div className="text-blue-400 mt-1">
                   <IoMail className="text-xl" />
@@ -187,9 +199,9 @@ const Contact = () => {
               </div>
             </div>
             
-            <div className="mt-12">
-              <h4 className="font-medium text-lg mb-4 text-gray-300">Connect with me</h4>
-              <div className="flex gap-4">
+            <div className="mt-8 md:mt-12">
+              <h4 className="font-medium text-base md:text-lg mb-3 md:mb-4 text-gray-300">Connect with me</h4>
+              <div className="flex gap-3 md:gap-4">
                 {socialLinks.map((link, index) => (
                   <a
                     key={index}
@@ -205,9 +217,9 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="mt-8 p-4 bg-gray-700 rounded-lg border border-gray-600">
-              <h4 className="font-medium text-lg mb-2 text-gray-300">Availability</h4>
-              <p className="text-gray-400">
+            <div className="mt-6 md:mt-8 p-3 md:p-4 bg-gray-700 rounded-lg border border-gray-600">
+              <h4 className="font-medium text-base md:text-lg mb-2 text-gray-300">Availability</h4>
+              <p className="text-sm md:text-base text-gray-400">
                 I'm currently available for freelance work and new opportunities. 
                 Feel free to reach out for collaborations!
               </p>

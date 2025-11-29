@@ -1,13 +1,56 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 ::-webkit-scrollbar {
   display: none; /* Hide scrollbar */
 }
-body {
-  cursor: url('/cursor-default.png') 1 1, auto;
+
+/* Cursor styles - MUST be after Tailwind */
+/* Default cursor - apply to root first */
+html {
+  cursor: url('/cursor-default.png'), auto !important;
 }
 
-a:hover, button:hover, .hover-target:hover {
-  cursor: url('/cursor-hover.png') 1 1, pointer;
+body {
+  cursor: url('/cursor-default.png'), auto !important;
+}
+
+/* Default cursor for all elements */
+* {
+  cursor: url('/cursor-default.png'), auto !important;
+}
+
+/* Hover cursor for interactive elements */
+a:hover,
+a:focus,
+button:hover,
+button:focus,
+[role="button"]:hover,
+[role="button"]:focus,
+input:hover,
+input:focus,
+.hover-target:hover,
+.hover-target:focus,
+.cursor-hover:hover,
+.cursor-hover:focus,
+[class*="ScrollLink"]:hover,
+[class*="ScrollLink"]:focus {
+  cursor: url('/cursor-hoverr.png'), pointer !important;
+}
+
+/* Preserve special cursors */
+.cursor-grab,
+.cursor-grab * {
+  cursor: grab !important;
+}
+.cursor-grabbing,
+.cursor-grabbing * {
+  cursor: grabbing !important;
+}
+.cursor-not-allowed {
+  cursor: not-allowed !important;
+}
+.cursor-text {
+  cursor: text !important;
 }
