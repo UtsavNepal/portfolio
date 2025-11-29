@@ -25,7 +25,7 @@ const AboutMe = () => {
   return (
     <section
       id="about"
-      className="relative w-full min-h-screen flex flex-col md:flex-row pt-16 overflow-x-hidden"
+      className="relative w-full min-h-screen flex flex-col md:flex-row pt-10 md:pt-12 overflow-x-hidden"
     >
       {/* Mobile Background */}
       <div
@@ -42,22 +42,22 @@ const AboutMe = () => {
 
       {/* Mobile Content */}
       <div className="md:hidden relative w-full flex flex-col min-h-screen justify-end z-10">
-        <div className="flex items-center absolute left-4 top-20 bg-black/30 backdrop-blur-md px-3 py-1.5 rounded-full z-20">
+        <div className="flex items-center absolute left-4 top-16 bg-black/30 backdrop-blur-md px-3 py-1.5 rounded-full z-20">
           <IoLocationOutline className="text-cyan-400 w-4 h-4 mr-1.5" />
           <span className="text-white font-medium text-xs drop-shadow-lg">Hetauda, Nepal</span>
         </div>
         
-        <div className="w-full px-4 pb-8 pt-8 mt-auto bg-gradient-to-t from-black/85 via-black/60 to-black/30 backdrop-blur-sm rounded-t-3xl flex flex-col border-t border-white/10">
+        <div className="w-full px-4 pb-6 pt-5 mt-auto bg-gradient-to-t from-black/85 via-black/60 to-black/30 backdrop-blur-sm rounded-t-3xl flex flex-col border-t border-white/10">
           <div className="flex-1 min-w-0">
             {/* Name Section */}
-            <div className="mb-6">
+            <div className="mb-4">
               <h2 className="text-sm text-cyan-400 font-medium mb-1 uppercase tracking-wider">Hi, I am</h2>
-              <h1 className="text-3xl font-bold text-white mb-2 drop-shadow-lg">Utsav Nepal</h1>
-              <h3 className="text-base text-gray-300 mb-4 drop-shadow-lg">Full Stack Developer & DevOps Enthusiast</h3>
+              <h1 className="text-2xl font-bold text-white mb-1.5 drop-shadow-lg">Utsav Nepal</h1>
+              <h3 className="text-sm text-gray-300 mb-3 drop-shadow-lg">Full Stack Developer & DevOps Enthusiast</h3>
             </div>
             
             {/* Social Media Icons */}
-            <div className="flex justify-center gap-3 mb-5">
+            <div className="flex justify-center gap-3 mb-4">
               {SOCIALS.map((item, idx) => (
                 <a
                   key={idx}
