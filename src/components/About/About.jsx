@@ -34,39 +34,57 @@ const AboutMe = () => {
           backgroundImage: `url(${whoDesktop})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          filter: "brightness(1.05) contrast(1.05)"
+          filter: "brightness(1.1) contrast(1.1) saturate(1.05)"
         }}
         aria-hidden="true"
       />
-      <div className="absolute inset-0 w-full h-full z-0 bg-black/20 md:hidden" aria-hidden="true" />
+      <div className="absolute inset-0 w-full h-full z-0 bg-gradient-to-b from-transparent via-black/10 to-black/40 md:hidden" aria-hidden="true" />
 
       {/* Mobile Content */}
       <div className="md:hidden relative w-full flex flex-col min-h-screen justify-end z-10">
-        <div className="flex items-center absolute left-3 top-20 bg-transparent">
-          <IoLocationOutline className="text-cyan-400 w-5 h-5 mr-1" />
-          <span className="text-white font-medium text-sm drop-shadow-lg">Hetauda, Nepal</span>
+        <div className="flex items-center absolute left-4 top-20 bg-black/30 backdrop-blur-md px-3 py-1.5 rounded-full z-20">
+          <IoLocationOutline className="text-cyan-400 w-4 h-4 mr-1.5" />
+          <span className="text-white font-medium text-xs drop-shadow-lg">Hetauda, Nepal</span>
         </div>
         
-        <div className="w-full px-3 pb-7 pt-6 mt-auto bg-black/20 backdrop-blur-sm rounded-t-3xl flex flex-col">
+        <div className="w-full px-4 pb-8 pt-8 mt-auto bg-gradient-to-t from-black/85 via-black/60 to-black/30 backdrop-blur-sm rounded-t-3xl flex flex-col border-t border-white/10">
           <div className="flex-1 min-w-0">
-            <h2 className="text-base text-white font-medium drop-shadow-lg">Hi, I am</h2>
-            <h1 className="text-2xl font-bold text-white mb-2 drop-shadow-lg">Utsav Nepal</h1>
-            <h3 className="text-base text-gray-200 mb-2 drop-shadow-lg">Full Stack Developer and DevOps Enthusiast</h3>
+            {/* Name Section */}
+            <div className="mb-6">
+              <h2 className="text-sm text-cyan-400 font-medium mb-1 uppercase tracking-wider">Hi, I am</h2>
+              <h1 className="text-3xl font-bold text-white mb-2 drop-shadow-lg">Utsav Nepal</h1>
+              <h3 className="text-base text-gray-300 mb-4 drop-shadow-lg">Full Stack Developer & DevOps Enthusiast</h3>
+            </div>
             
-            {/* Mobile Email Button */}
-            <button
-              onClick={handleGetInTouch}
-              className="flex items-center justify-center w-full mb-3 px-4 py-3 bg-cyan-500 text-white rounded-full font-semibold text-sm shadow-lg hover:bg-cyan-600 transition-all"
-            >
-              <IoMailOutline className="mr-2 text-lg" />
-              Get In Touch
-            </button>
+            {/* Social Media Icons */}
+            <div className="flex justify-center gap-3 mb-5">
+              {SOCIALS.map((item, idx) => (
+                <a
+                  key={idx}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white rounded-full p-3 text-lg bg-gradient-to-br from-cyan-500/20 to-blue-500/20 hover:from-cyan-500/30 hover:to-blue-500/30 border border-cyan-400/30 transition-all backdrop-blur-sm shadow-lg hover:scale-110"
+                >
+                  {item.icon}
+                </a>
+              ))}
+            </div>
             
-            <div className="flex justify-between items-center">
-              <div className="flex space-x-3">
+            {/* Action Buttons */}
+            <div className="space-y-3 mb-4">
+              <button
+                onClick={handleGetInTouch}
+                className="flex items-center justify-center w-full px-4 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-xl font-semibold text-sm shadow-xl hover:from-cyan-600 hover:to-blue-600 transition-all transform hover:scale-[1.02]"
+              >
+                <IoMailOutline className="mr-2 text-lg" />
+                Get In Touch
+              </button>
+              
+              <div className="flex gap-2.5">
                 <button
                   onClick={() => setShowAbout(true)}
-                  className="px-4 py-2 text-sm font-semibold bg-white/90 text-black rounded-full shadow-lg hover:bg-gray-200 transition-all"
+                  className="flex-1 flex items-center justify-center px-4 py-2.5 text-sm font-semibold bg-white/10 backdrop-blur-sm text-white border border-white/20 rounded-xl hover:bg-white/20 transition-all"
                 >
                   About Me
                 </button>
@@ -74,24 +92,11 @@ const AboutMe = () => {
                   href={CV}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center bg-white/90 text-black px-4 py-2 rounded-full font-semibold text-xs shadow-lg hover:bg-gray-200 transition-all"
+                  className="flex-1 flex items-center justify-center justify-center bg-white/10 backdrop-blur-sm text-white border border-white/20 px-4 py-2.5 rounded-xl font-semibold text-sm hover:bg-white/20 transition-all"
                 >
-                  <IoDocumentTextOutline className="mr-1" />
-                  Download CV
+                  <IoDocumentTextOutline className="mr-1.5 text-base" />
+                  <span className="text-xs sm:text-sm">CV</span>
                 </a>
-              </div>
-              <div className="flex gap-3">
-                {SOCIALS.map((item, idx) => (
-                  <a
-                    key={idx}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-white rounded-full p-2 text-xl bg-black/40 hover:bg-black/70 transition flex items-center justify-center backdrop-blur-sm"
-                  >
-                    {item.icon}
-                  </a>
-                ))}
               </div>
             </div>
           </div>
