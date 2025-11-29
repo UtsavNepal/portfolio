@@ -103,17 +103,71 @@ const AboutMe = () => {
         </div>
         
         {showAbout && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
-            <div className="bg-white rounded-lg shadow-2xl max-w-sm w-[90vw] p-6 relative">
+          <div 
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 animate-fadeIn"
+            onClick={() => setShowAbout(false)}
+          >
+            <div 
+              className="bg-gradient-to-br from-gray-900 to-black rounded-2xl shadow-2xl max-w-md w-full p-6 md:p-8 relative border border-gray-700/50 animate-scaleIn"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
               <button
-                className="absolute top-2 right-3 text-black text-2xl font-bold hover:text-gray-600 transition"
+                className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors p-1.5 hover:bg-gray-800 rounded-full"
                 onClick={() => setShowAbout(false)}
                 aria-label="Close"
               >
-                &times;
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
               </button>
-              <h4 className="text-lg font-semibold mb-2 text-black">About Me</h4>
-              <p className="text-black mb-2 text-sm">{aboutText}</p>
+              
+              {/* Header */}
+              <div className="mb-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center">
+                    <span className="text-white font-bold text-lg">U</span>
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold text-white">About Me</h4>
+                    <p className="text-xs text-gray-400">Full Stack Developer</p>
+                  </div>
+                </div>
+                <div className="h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"></div>
+              </div>
+              
+              {/* Content */}
+              <div className="space-y-4">
+                <p className="text-gray-300 leading-relaxed text-sm md:text-base">
+                  {aboutText}
+                </p>
+                
+                {/* Key Points */}
+                <div className="space-y-2 pt-2">
+                  <div className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-2 flex-shrink-0"></div>
+                    <p className="text-gray-400 text-xs md:text-sm">Passionate about building scalable web applications</p>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-2 flex-shrink-0"></div>
+                    <p className="text-gray-400 text-xs md:text-sm">Always learning and exploring new technologies</p>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-2 flex-shrink-0"></div>
+                    <p className="text-gray-400 text-xs md:text-sm">Focused on clean code and best practices</p>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Footer */}
+              <div className="mt-6 pt-4 border-t border-gray-800">
+                <button
+                  onClick={() => setShowAbout(false)}
+                  className="w-full px-4 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg font-semibold text-sm hover:from-cyan-600 hover:to-blue-600 transition-all transform hover:scale-[1.02]"
+                >
+                  Got it!
+                </button>
+              </div>
             </div>
           </div>
         )}
