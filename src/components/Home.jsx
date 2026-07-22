@@ -7,10 +7,12 @@ import Footer from './Footer/Footer';
 import Experience from './Experience/Experience';
 import Label from './Marquee/Marquee';
 import ClickRipple from './ClickRipple';
+import IntroSplash from './IntroSplash';
 
 const Home = () => {
   return (
     <div className="bg-[#171717] text-white hover-target relative">
+      <IntroSplash />
       <ClickRipple />
       <Header />
       {/* <Landing></Landing> */}

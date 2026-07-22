@@ -1,0 +1,386 @@
+.intro-splash {
+  --intro-bg: #06101c;
+  --intro-cyan: #38bdf8;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  min-height: 100svh;
+  background: var(--intro-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 0.7s ease, visibility 0.7s ease;
+}
+
+.intro-splash.is-leaving {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.intro-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.intro-scene {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.85s ease;
+}
+
+.intro-scene.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.intro-frame {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--intro-bg);
+}
+
+/* Desktop: full-bleed cinematic cover */
+.intro-media,
+.intro-media-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  background: var(--intro-bg);
+}
+
+/* Blur fill only needed when letterboxing on small/portrait screens */
+.intro-media-bg {
+  display: none;
+}
+
+/* Scene 2 / 3 stills — motion so they read as video */
+.intro-scene--still .intro-media {
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.intro-scene--still.is-active .intro-media.ken-burns-in {
+  animation: introKenBurnsIn 4.2s ease-out forwards;
+}
+
+.intro-scene--still.is-active .intro-media.ken-burns-out {
+  animation: introKenBurnsOut 4.2s ease-out forwards;
+}
+
+@keyframes introKenBurnsIn {
+  from {
+    transform: scale(1.08) translate3d(-1.5%, 1%, 0);
+  }
+  to {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+}
+
+@keyframes introKenBurnsOut {
+  from {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.1) translate3d(1.5%, -1.2%, 0);
+  }
+}
+
+.intro-grain,
+.intro-vignette,
+.intro-scan {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.intro-grain {
+  opacity: 0.12;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  animation: introGrain 0.35s steps(2) infinite;
+}
+
+@keyframes introGrain {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-2%, 1%);
+  }
+}
+
+.intro-vignette {
+  background: radial-gradient(
+    ellipse at center,
+    transparent 42%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+}
+
+.intro-scan {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(56, 189, 248, 0.04) 50%,
+    transparent 100%
+  );
+  background-size: 100% 220%;
+  animation: introScan 5s linear infinite;
+  opacity: 0.55;
+}
+
+@keyframes introScan {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 0% 100%;
+  }
+}
+
+.intro-skip {
+  position: absolute;
+  top: max(1rem, env(safe-area-inset-top, 0px));
+  right: max(1rem, env(safe-area-inset-right, 0px));
+  z-index: 5;
+  min-height: 44px;
+  min-width: 72px;
+  padding: 0.55rem 1.1rem;
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  background: rgba(6, 16, 28, 0.72);
+  color: #e2e8f0;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.intro-skip:hover {
+  border-color: rgba(56, 189, 248, 0.9);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.intro-progress {
+  position: absolute;
+  left: 50%;
+  bottom: max(1.25rem, calc(env(safe-area-inset-bottom, 0px) + 0.75rem));
+  z-index: 5;
+  display: flex;
+  gap: 0.45rem;
+  transform: translateX(-50%);
+}
+
+.intro-progress span {
+  width: 1.75rem;
+  height: 3px;
+  background: rgba(148, 163, 184, 0.35);
+  overflow: hidden;
+}
+
+.intro-progress span i {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: var(--intro-cyan);
+}
+
+.intro-progress span.is-done i {
+  width: 100%;
+}
+
+.intro-progress span.is-active i {
+  animation: introProgressFill var(--fill-ms, 4000ms) linear forwards;
+}
+
+@keyframes introProgressFill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/*
+  Mobile / portrait: media is 16:9.
+  Use contain so side panels stay readable, with a blurred cover fill behind.
+*/
+@media (max-width: 900px), (orientation: portrait) {
+  .intro-frame {
+    background:
+      radial-gradient(ellipse at center, rgba(14, 40, 68, 0.9) 0%, var(--intro-bg) 70%),
+      var(--intro-bg);
+  }
+
+  .intro-scene--still .intro-media-bg {
+    display: block;
+    object-fit: cover;
+    object-position: center center;
+    transform: scale(1.18);
+    filter: blur(18px) saturate(1.05) brightness(0.55);
+    opacity: 0.9;
+  }
+
+  .intro-media {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    max-height: 100dvh;
+    object-fit: contain;
+    object-position: center center;
+    z-index: 1;
+  }
+
+  .intro-scene--still .intro-media {
+    width: 100%;
+    height: auto;
+  }
+
+  .intro-scene--still.is-active .intro-media.ken-burns-in {
+    animation: introKenBurnsInMobile 4.2s ease-out forwards;
+  }
+
+  .intro-scene--still.is-active .intro-media.ken-burns-out {
+    animation: introKenBurnsOutMobile 4.2s ease-out forwards;
+  }
+
+  @keyframes introKenBurnsInMobile {
+    from {
+      transform: scale(1.04);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes introKenBurnsOutMobile {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.05);
+    }
+  }
+
+  .intro-vignette {
+    background: radial-gradient(
+      ellipse at center,
+      transparent 35%,
+      rgba(0, 0, 0, 0.62) 100%
+    );
+  }
+
+  .intro-skip {
+    top: auto;
+    bottom: max(3.5rem, calc(env(safe-area-inset-bottom, 0px) + 2.75rem));
+    right: max(0.85rem, env(safe-area-inset-right, 0px));
+    padding: 0.7rem 1.15rem;
+    font-size: 0.68rem;
+  }
+
+  .intro-progress {
+    bottom: max(1rem, calc(env(safe-area-inset-bottom, 0px) + 0.85rem));
+  }
+
+  .intro-progress span {
+    width: 2rem;
+  }
+}
+
+/* Narrow phones: keep framing tight and controls clear of home indicator */
+@media (max-width: 480px) {
+  .intro-media {
+    width: 100vw;
+    max-height: calc(100dvh - 5.5rem);
+  }
+
+  .intro-scene--still .intro-media-bg {
+    filter: blur(22px) saturate(1.08) brightness(0.5);
+  }
+
+  .intro-skip {
+    letter-spacing: 0.14em;
+  }
+}
+
+/* Short landscape phones / tablets in landscape */
+@media (max-height: 500px) and (orientation: landscape) {
+  .intro-frame {
+    background:
+      radial-gradient(ellipse at center, rgba(14, 40, 68, 0.9) 0%, var(--intro-bg) 70%),
+      var(--intro-bg);
+  }
+
+  .intro-scene--still .intro-media-bg {
+    display: block;
+    object-fit: cover;
+    filter: blur(14px) brightness(0.5);
+    transform: scale(1.12);
+  }
+
+  .intro-media {
+    position: relative;
+    inset: auto;
+    width: auto;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    z-index: 1;
+  }
+
+  .intro-skip {
+    top: max(0.65rem, env(safe-area-inset-top, 0px));
+    bottom: auto;
+    right: max(0.75rem, env(safe-area-inset-right, 0px));
+    min-height: 36px;
+    padding: 0.4rem 0.85rem;
+  }
+
+  .intro-progress {
+    bottom: max(0.65rem, env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-scene--still.is-active .intro-media.ken-burns-in,
+  .intro-scene--still.is-active .intro-media.ken-burns-out {
+    animation: none;
+    transform: none;
+  }
+
+  .intro-grain,
+  .intro-scan {
+    animation: none;
+  }
+
+  .intro-progress span.is-active i {
+    animation: none;
+    width: 100%;
+  }
+}
