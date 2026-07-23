@@ -1,20 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
-import scene1Video from './intro/scene-1.mp4';
-import scene2Img from './intro/scene-2.png';
-import scene3Img from './intro/scene-3.png';
+import introVideo from './intro/intro.mov';
 import './IntroSplash.css';
 
-const STILL_DURATION_MS = 4200;
 const EXIT_MS = 700;
+const PLAY_COUNT = 2;
+const FALLBACK_MS = 20000;
 
 const IntroSplash = ({ onFinish }) => {
   const [visible, setVisible] = useState(true);
-  const [scene, setScene] = useState(0);
   const [leaving, setLeaving] = useState(false);
-  const [videoDurationMs, setVideoDurationMs] = useState(4500);
+  const [totalMs, setTotalMs] = useState(6000);
   const videoRef = useRef(null);
   const timersRef = useRef([]);
   const finishedRef = useRef(false);
+  const playsDoneRef = useRef(0);
+  const loopingRef = useRef(false);
 
   const clearTimers = () => {
     timersRef.current.forEach(clearTimeout);
@@ -25,6 +25,8 @@ const IntroSplash = ({ onFinish }) => {
     if (finishedRef.current) return;
     finishedRef.current = true;
     clearTimers();
+    const video = videoRef.current;
+    if (video) video.pause();
     setLeaving(true);
     const t = setTimeout(() => {
       setVisible(false);
@@ -33,13 +35,45 @@ const IntroSplash = ({ onFinish }) => {
     timersRef.current.push(t);
   };
 
-  const goToScene = (next) => {
+  const replaySeamless = (video) => {
+    if (loopingRef.current || finishedRef.current) return;
+    loopingRef.current = true;
+
+    // Jump back before the last frame so the restart feels continuous
+    const restart = () => {
+      try {
+        video.currentTime = 0.001;
+      } catch {
+        video.currentTime = 0;
+      }
+      const playPromise = video.play();
+      if (playPromise?.catch) {
+        playPromise.catch(() => finish());
+      }
+      // Tiny delay before allowing another loop edge
+      requestAnimationFrame(() => {
+        loopingRef.current = false;
+      });
+    };
+
+    // Keep last frame painted while seeking (avoids a black flash)
+    if (video.readyState >= 2) {
+      restart();
+    } else {
+      video.addEventListener('loadeddata', restart, { once: true });
+      restart();
+    }
+  };
+
+  const handleEnded = () => {
     if (finishedRef.current) return;
-    if (next > 2) {
+    playsDoneRef.current += 1;
+    if (playsDoneRef.current >= PLAY_COUNT) {
       finish();
       return;
     }
-    setScene(next);
+    const video = videoRef.current;
+    if (video) replaySeamless(video);
   };
 
   useEffect(() => {
@@ -60,32 +94,31 @@ const IntroSplash = ({ onFinish }) => {
     if (!visible || leaving) return undefined;
 
     clearTimers();
+    playsDoneRef.current = 0;
+    loopingRef.current = false;
 
-    if (scene === 0) {
-      const video = videoRef.current;
-      if (video) {
-        video.currentTime = 0;
-        const playPromise = video.play();
-        if (playPromise?.catch) {
-          playPromise.catch(() => {
-            const t = setTimeout(() => goToScene(1), 1200);
-            timersRef.current.push(t);
-          });
-        }
+    const video = videoRef.current;
+    if (video) {
+      video.currentTime = 0;
+      const playPromise = video.play();
+      if (playPromise?.catch) {
+        playPromise.catch(() => {
+          const t = setTimeout(finish, 1500);
+          timersRef.current.push(t);
+        });
       }
-      return clearTimers;
     }
 
-    const t = setTimeout(() => goToScene(scene + 1), STILL_DURATION_MS);
-    timersRef.current.push(t);
+    const fallback = setTimeout(finish, FALLBACK_MS);
+    timersRef.current.push(fallback);
+
     return clearTimers;
-  }, [scene, visible, leaving]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible, leaving]);
 
   useEffect(() => () => clearTimers(), []);
 
   if (!visible) return null;
-
-  const progressMs = scene === 0 ? videoDurationMs : STILL_DURATION_MS;
 
   return (
     <div
@@ -95,58 +128,23 @@ const IntroSplash = ({ onFinish }) => {
       aria-modal="true"
     >
       <div className="intro-stage">
-        <div className={`intro-scene intro-scene--video ${scene === 0 ? 'is-active' : ''}`}>
+        <div className="intro-scene intro-scene--video is-active">
           <div className="intro-frame">
             <video
               ref={videoRef}
-              className="intro-media"
-              src={scene1Video}
+              className="intro-media intro-media--drift"
+              src={introVideo}
               muted
               playsInline
               preload="auto"
               onLoadedMetadata={(e) => {
                 const sec = e.currentTarget.duration;
                 if (Number.isFinite(sec) && sec > 0) {
-                  setVideoDurationMs(Math.max(1200, sec * 1000));
+                  setTotalMs(Math.max(2400, sec * 1000 * PLAY_COUNT));
                 }
               }}
-              onEnded={() => goToScene(1)}
-            />
-          </div>
-        </div>
-
-        <div className={`intro-scene intro-scene--still intro-scene--2 ${scene === 1 ? 'is-active' : ''}`}>
-          <div className="intro-frame">
-            <img
-              className="intro-media-bg"
-              src={scene2Img}
-              alt=""
-              aria-hidden="true"
-              draggable={false}
-            />
-            <img
-              className="intro-media ken-burns-in"
-              src={scene2Img}
-              alt="Blueprint of Utsav — scene 2"
-              draggable={false}
-            />
-          </div>
-        </div>
-
-        <div className={`intro-scene intro-scene--still intro-scene--3 ${scene === 2 ? 'is-active' : ''}`}>
-          <div className="intro-frame">
-            <img
-              className="intro-media-bg"
-              src={scene3Img}
-              alt=""
-              aria-hidden="true"
-              draggable={false}
-            />
-            <img
-              className="intro-media ken-burns-out"
-              src={scene3Img}
-              alt="Blueprint of Utsav — scene 3"
-              draggable={false}
+              onEnded={handleEnded}
+              onError={finish}
             />
           </div>
         </div>
@@ -161,17 +159,9 @@ const IntroSplash = ({ onFinish }) => {
       </button>
 
       <div className="intro-progress" aria-hidden="true">
-        {[0, 1, 2].map((i) => (
-          <span
-            key={i}
-            className={
-              i < scene ? 'is-done' : i === scene ? 'is-active' : ''
-            }
-            style={i === scene ? { '--fill-ms': `${progressMs}ms` } : undefined}
-          >
-            <i />
-          </span>
-        ))}
+        <span className="is-active" style={{ '--fill-ms': `${totalMs}ms` }}>
+          <i />
+        </span>
       </div>
     </div>
   );

@@ -33,7 +33,6 @@
   inset: 0;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.85s ease;
 }
 
 .intro-scene.is-active {
@@ -52,8 +51,7 @@
 }
 
 /* Desktop: full-bleed cinematic cover */
-.intro-media,
-.intro-media-bg {
+.intro-media {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -64,40 +62,22 @@
   background: var(--intro-bg);
 }
 
-/* Blur fill only needed when letterboxing on small/portrait screens */
-.intro-media-bg {
-  display: none;
-}
-
-/* Scene 2 / 3 stills — motion so they read as video */
-.intro-scene--still .intro-media {
+/* Slow drift masks the seamless double-play restart */
+.intro-media--drift {
   transform-origin: center center;
   will-change: transform;
+  animation: introMediaDrift 6.2s ease-in-out forwards;
 }
 
-.intro-scene--still.is-active .intro-media.ken-burns-in {
-  animation: introKenBurnsIn 4.2s ease-out forwards;
-}
-
-.intro-scene--still.is-active .intro-media.ken-burns-out {
-  animation: introKenBurnsOut 4.2s ease-out forwards;
-}
-
-@keyframes introKenBurnsIn {
-  from {
-    transform: scale(1.08) translate3d(-1.5%, 1%, 0);
+@keyframes introMediaDrift {
+  0% {
+    transform: scale(1.06) translate3d(-1.2%, 0.6%, 0);
   }
-  to {
+  50% {
+    transform: scale(1.03) translate3d(0.8%, -0.5%, 0);
+  }
+  100% {
     transform: scale(1) translate3d(0, 0, 0);
-  }
-}
-
-@keyframes introKenBurnsOut {
-  from {
-    transform: scale(1) translate3d(0, 0, 0);
-  }
-  to {
-    transform: scale(1.1) translate3d(1.5%, -1.2%, 0);
   }
 }
 
@@ -193,7 +173,7 @@
 }
 
 .intro-progress span {
-  width: 1.75rem;
+  width: min(42vw, 12rem);
   height: 3px;
   background: rgba(148, 163, 184, 0.35);
   overflow: hidden;
@@ -206,12 +186,8 @@
   background: var(--intro-cyan);
 }
 
-.intro-progress span.is-done i {
-  width: 100%;
-}
-
 .intro-progress span.is-active i {
-  animation: introProgressFill var(--fill-ms, 4000ms) linear forwards;
+  animation: introProgressFill var(--fill-ms, 8000ms) linear forwards;
 }
 
 @keyframes introProgressFill {
@@ -223,24 +199,12 @@
   }
 }
 
-/*
-  Mobile / portrait: media is 16:9.
-  Use contain so side panels stay readable, with a blurred cover fill behind.
-*/
+/* Mobile / portrait: keep full frame readable */
 @media (max-width: 900px), (orientation: portrait) {
   .intro-frame {
     background:
       radial-gradient(ellipse at center, rgba(14, 40, 68, 0.9) 0%, var(--intro-bg) 70%),
       var(--intro-bg);
-  }
-
-  .intro-scene--still .intro-media-bg {
-    display: block;
-    object-fit: cover;
-    object-position: center center;
-    transform: scale(1.18);
-    filter: blur(18px) saturate(1.05) brightness(0.55);
-    opacity: 0.9;
   }
 
   .intro-media {
@@ -254,37 +218,6 @@
     object-fit: contain;
     object-position: center center;
     z-index: 1;
-  }
-
-  .intro-scene--still .intro-media {
-    width: 100%;
-    height: auto;
-  }
-
-  .intro-scene--still.is-active .intro-media.ken-burns-in {
-    animation: introKenBurnsInMobile 4.2s ease-out forwards;
-  }
-
-  .intro-scene--still.is-active .intro-media.ken-burns-out {
-    animation: introKenBurnsOutMobile 4.2s ease-out forwards;
-  }
-
-  @keyframes introKenBurnsInMobile {
-    from {
-      transform: scale(1.04);
-    }
-    to {
-      transform: scale(1);
-    }
-  }
-
-  @keyframes introKenBurnsOutMobile {
-    from {
-      transform: scale(1);
-    }
-    to {
-      transform: scale(1.05);
-    }
   }
 
   .intro-vignette {
@@ -306,21 +239,12 @@
   .intro-progress {
     bottom: max(1rem, calc(env(safe-area-inset-bottom, 0px) + 0.85rem));
   }
-
-  .intro-progress span {
-    width: 2rem;
-  }
 }
 
-/* Narrow phones: keep framing tight and controls clear of home indicator */
 @media (max-width: 480px) {
   .intro-media {
     width: 100vw;
     max-height: calc(100dvh - 5.5rem);
-  }
-
-  .intro-scene--still .intro-media-bg {
-    filter: blur(22px) saturate(1.08) brightness(0.5);
   }
 
   .intro-skip {
@@ -328,19 +252,11 @@
   }
 }
 
-/* Short landscape phones / tablets in landscape */
 @media (max-height: 500px) and (orientation: landscape) {
   .intro-frame {
     background:
       radial-gradient(ellipse at center, rgba(14, 40, 68, 0.9) 0%, var(--intro-bg) 70%),
       var(--intro-bg);
-  }
-
-  .intro-scene--still .intro-media-bg {
-    display: block;
-    object-fit: cover;
-    filter: blur(14px) brightness(0.5);
-    transform: scale(1.12);
   }
 
   .intro-media {
@@ -368,8 +284,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .intro-scene--still.is-active .intro-media.ken-burns-in,
-  .intro-scene--still.is-active .intro-media.ken-burns-out {
+  .intro-media--drift {
     animation: none;
     transform: none;
   }
