@@ -88,7 +88,7 @@ const Experience = () => {
       location: 'Japan (Remote)',
       date: 'Sep 5 2025 - Present',
       description: 'Working as a full stack engineer, building and maintaining scalable web applications in a fully remote setup.',
-      techStack: ['Dotnet', 'React Js', 'Next js', 'TypeScript', 'Teams', 'Git'],
+      techStack: ['Dotnet', 'React Js', 'Next js','Nest js','Expo go', 'TypeScript', 'Teams', 'Git'],
     },
   ];
 

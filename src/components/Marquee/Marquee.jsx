@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { FaReact, FaDocker, FaAws, FaGitAlt, FaLinux, FaPython } from 'react-icons/fa';
-import { SiDotnet, SiMongodb, SiPostgresql, SiJenkins, SiTypescript, SiNextdotjs, SiTailwindcss, SiDjango, SiRabbitmq, SiTrivy, SiSonarqube } from 'react-icons/si';
+import { SiDotnet, SiMongodb, SiPostgresql, SiJenkins, SiExpo, SiTypescript, SiNextdotjs, SiTailwindcss, SiDjango, SiRabbitmq, SiTrivy, SiSonarqube,SiNestjs } from 'react-icons/si';
 
 const Label = () => {
   const [isPlaying, setIsPlaying] = useState(true);
@@ -18,7 +18,9 @@ const Label = () => {
     { Icon: FaGitAlt, name: 'Git' },
     { Icon: FaLinux, name: 'Linux' },
     { Icon: FaPython, name: 'Python' },
-    { Icon: SiDotnet, name: '.NET' },
+    { Icon: SiDotnet, name: '' },
+    { Icon: SiNestjs, name: 'NestJS' },
+    { Icon: SiExpo, name: 'ExpoGO' },
     { Icon: SiMongodb, name: 'MongoDB' },
     { Icon: SiPostgresql, name: 'PostgreSQL' },
     { Icon: SiJenkins, name: 'Jenkins' },

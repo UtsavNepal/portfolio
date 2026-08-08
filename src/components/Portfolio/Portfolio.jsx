@@ -40,7 +40,7 @@ const Portfolio = () => {
         >
           My <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Projects</span>
         </motion.h2>
-        <p className="text-gray-400 text-lg">Explore my technical implementations and solutions</p>
+      <p className="text-gray-400 text-lg">Explore my technical implementations and solutions <br/> <spam className="text-white-700 text-[10px]">(These includes some project that i felt like i would keep working on in future , might not work correctly)</spam></p>
       </div>
 
       {/* Filter buttons */}

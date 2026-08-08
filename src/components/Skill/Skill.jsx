@@ -4,8 +4,8 @@ const Skill = () => {
   const skillsData = {
     skills: [
       {
-        "Backend Development": ".NET (C#), Django, Next.js, Fastapi,Express.js",
-        "Frontend Development": "React, Tailwind, TypeScript, Next Js,JavaScript, HTML, CSS, Bootstrap",
+        "Backend Development": ".NET (C#), Django, Next.js,Nest js, Fastapi,Express.js",
+        "Frontend Development": "React, Tailwind, TypeScript, Next Js, Expo go, Nest js, JavaScript, HTML, CSS, Bootstrap",
         "Database & Storage": "PostgreSQL, MySQL, MongoDB, Stored Procedures",
         "DevOps & Cloud": "Kubernetes (Minikube), Jenkins, Docker, Git",
         "Architectural Patterns": "Clean Architecture, CQRS, MediatR, Repository Pattern",
