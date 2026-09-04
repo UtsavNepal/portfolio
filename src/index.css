@@ -2,84 +2,99 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --night: #080a0d;
+  --gold: #c9a227;
+  --cream: #f3efe6;
+}
+
 ::-webkit-scrollbar {
-  display: none; /* Hide scrollbar */
+  width: 0;
+  height: 0;
 }
 
-/* Animations for About Me Modal */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9) translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-.animate-fadeIn {
-  animation: fadeIn 0.2s ease-out;
-}
-
-.animate-scaleIn {
-  animation: scaleIn 0.3s ease-out;
-}
-
-/* Cursor styles - MUST be after Tailwind */
-/* Default cursor - apply to root first */
 html {
-  cursor: url('/cursor-default.png'), auto !important;
+  scroll-behavior: smooth;
 }
 
 body {
-  cursor: url('/cursor-default.png'), auto !important;
+  margin: 0;
+  background: var(--night);
+  color: var(--cream);
+  font-family: Manrope, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Default cursor for all elements */
-* {
-  cursor: url('/cursor-default.png'), auto !important;
+::selection {
+  background: rgba(201, 162, 39, 0.35);
+  color: #fff;
 }
 
-/* Hover cursor for interactive elements */
-a:hover,
-a:focus,
-button:hover,
-button:focus,
-[role="button"]:hover,
-[role="button"]:focus,
-input:hover,
-input:focus,
-.hover-target:hover,
-.hover-target:focus,
-.cursor-hover:hover,
-.cursor-hover:focus,
-[class*="ScrollLink"]:hover,
-[class*="ScrollLink"]:focus {
-  cursor: url('/cursor-hoverr.png'), pointer !important;
+@layer components {
+  .section-pad {
+    @apply px-5 sm:px-8 lg:px-16 py-20 sm:py-24;
+  }
+
+  .section-title {
+    @apply font-display text-4xl sm:text-5xl font-semibold tracking-tight text-cream;
+  }
+
+  .section-kicker {
+    @apply text-gold text-xs font-semibold uppercase tracking-[0.22em] mb-3;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-gold text-night font-semibold text-sm tracking-wide hover:bg-gold-soft transition-colors duration-300;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 border border-night-line text-cream font-medium text-sm hover:border-gold/50 hover:text-gold transition-colors duration-300;
+  }
 }
 
-/* Preserve special cursors */
-.cursor-grab,
-.cursor-grab * {
-  cursor: grab !important;
+.type-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 2px;
+  background: #c9a227;
+  vertical-align: -0.1em;
 }
-.cursor-grabbing,
-.cursor-grabbing * {
-  cursor: grabbing !important;
+
+.type-cursor--blink {
+  animation: cursorBlink 0.85s step-end infinite;
 }
-.cursor-not-allowed {
-  cursor: not-allowed !important;
+
+@keyframes cursorBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
-.cursor-text {
-  cursor: text !important;
+
+@media (hover: hover) and (pointer: fine) {
+  html,
+  body,
+  #app-root {
+    cursor: url('/cursor-default.png') 0 0, auto;
+  }
+
+  a:hover,
+  button:hover,
+  [role='button']:hover {
+    cursor: url('/cursor-hoverr.png'), pointer;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -1,156 +1,88 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
+import { FaExternalLinkAlt } from 'react-icons/fa';
 import data from './data';
+
+const categories = ['All', 'Fullstack', 'Frontend', 'Backend', 'Devops'];
 
 const Portfolio = () => {
   const [filter, setFilter] = useState('All');
-  const [hoveredCard, setHoveredCard] = useState(null);
-
-  const filteredData = filter === 'All' ? data : data.filter(item => item.cat === filter);
-
-  const categoryStyles = {
-    Fullstack: {
-      bg: 'bg-gradient-to-br from-purple-500 to-blue-600',
-      text: 'text-purple-100'
-    },
-    Frontend: {
-      bg: 'bg-gradient-to-br from-amber-400 to-orange-500',
-      text: 'text-amber-100'
-    },
-    Backend: {
-      bg: 'bg-gradient-to-br from-green-400 to-blue-500',
-      text: 'text-green-100'
-    },
-    Devops: {
-      bg: 'bg-gradient-to-br from-emerald-400 to-cyan-500',
-      text: 'text-emerald-100'
-    }
-  };
+  const filtered = filter === 'All' ? data : data.filter((d) => d.cat === filter);
 
   return (
-    <div id="projects" className="min-h-screen py-20 px-4 sm:px-8 lg:px-16" style={{ backgroundColor: '#171717' }}>
-      {/* Header */}
-      <div className="max-w-4xl mx-auto text-center mb-16">
-        <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-bold mb-4 text-white"
-        >
-          My <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Projects</span>
-        </motion.h2>
-      <p className="text-gray-400 text-lg">Explore my technical implementations and solutions <br/> <span className="text-white-700 text-[10px]">(These includes some project that i felt like i would keep working on in future , might not work correctly)</span></p>
-      </div>
+    <section id="projects" className="section-pad bg-night-raised/40">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-12 max-w-xl">
+          <p className="section-kicker">Selected work</p>
+          <h2 className="section-title mb-3">Projects</h2>
+          <p className="text-cream-mute text-base leading-relaxed">
+            Builds across fullstack, frontend, backend, and DevOps. Some are still evolving.
+          </p>
+        </div>
 
-      {/* Filter buttons */}
-      <motion.div 
-        className="flex flex-wrap justify-center gap-3 mb-12"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3 }}
-      >
-        {['All', 'Fullstack', 'Frontend','Backend','Devops'].map((cat) => (
-          <motion.button
-            key={cat}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setFilter(cat)}
-            className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
-              filter === cat 
-                ? cat === 'All' 
-                  ? 'bg-white text-gray-900' 
-                  : `${categoryStyles[cat]?.bg || 'bg-gray-700'} text-white`
-                : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-            }`}
-          >
-            {cat}
-          </motion.button>
-        ))}
-      </motion.div>
-
-      {/* Projects grid - New Design */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {filteredData.map((item, index) => {
-          const categoryStyle = categoryStyles[item.cat] || { bg: 'bg-gray-700', text: 'text-gray-100' };
-          
-          return (
-            <motion.div
-              key={`${item.id}-${index}`}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="relative group"
-              onMouseEnter={() => setHoveredCard(index)}
-              onMouseLeave={() => setHoveredCard(null)}
+        <div className="flex flex-wrap gap-2 mb-10">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              type="button"
+              onClick={() => setFilter(cat)}
+              className={`px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] transition-colors ${
+                filter === cat
+                  ? 'bg-gold text-night'
+                  : 'border border-night-line text-cream-mute hover:text-cream hover:border-gold/40'
+              }`}
             >
-              {/* Card */}
-              <div className={`h-full rounded-xl overflow-hidden border border-gray-800 transition-all duration-300 ${hoveredCard === index ? 'shadow-xl shadow-blue-900/20' : ''}`}>
-                {/* Image container */}
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={item.src}
-                    alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  {/* Category label */}
-                  <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold ${categoryStyle.bg} text-white shadow-md`}>
-                    {item.cat}
-                  </div>
-                </div>
+              {cat}
+            </button>
+          ))}
+        </div>
 
-                {/* Content area */}
-                <div className="p-6 bg-gray-900">
-                  {/* Prominent Title */}
-                  <h3 className="text-xl font-bold text-white mb-3 leading-tight">
-                    {item.title}
-                  </h3>
-                  
-                  {/* Action buttons */}
-                  <div className="flex gap-3 mt-4">
-                    <a
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${categoryStyle.bg} text-white hover:opacity-90`}
-                    >
-                      <span>View</span>
-                      <FaExternalLinkAlt className="text-xs" />
-                    </a>
-                    {item.github && (
-                      <a
-                        href={item.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 bg-gray-800 rounded-lg text-sm font-medium text-gray-300 hover:bg-gray-700 transition-all"
-                      >
-                        <FaGithub />
-                      </a>
-                    )}
-                  </div>
-                </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          {filtered.map((item, index) => (
+            <motion.article
+              key={item.id}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.45, delay: index * 0.05 }}
+              className="group"
+            >
+              <div className="relative aspect-[16/10] overflow-hidden mb-4 bg-night-soft">
+                <img
+                  src={item.src}
+                  alt={item.title}
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-night/70 via-transparent to-transparent opacity-80" />
+                <span className="absolute bottom-3 left-3 text-[10px] uppercase tracking-[0.16em] text-gold">
+                  {item.cat}
+                </span>
               </div>
 
-              {/* Glow effect */}
-              {hoveredCard === index && (
-                <div className={`absolute inset-0 rounded-xl pointer-events-none ${categoryStyle.bg} opacity-10 blur-md -z-10`} />
+              <h3 className="font-display text-2xl text-cream font-semibold mb-1.5 group-hover:text-gold transition-colors">
+                {item.title}
+              </h3>
+              {item.blurb && (
+                <p className="text-cream-mute text-sm leading-relaxed mb-3 max-w-md">{item.blurb}</p>
               )}
-            </motion.div>
-          );
-        })}
-      </div>
+              <a
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-gold hover:text-gold-soft transition-colors"
+              >
+                {item.linkLabel || 'View'}
+                <FaExternalLinkAlt className="text-[10px]" />
+              </a>
+            </motion.article>
+          ))}
+        </div>
 
-      {/* Empty state */}
-      {filteredData.length === 0 && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="text-center py-20 col-span-full"
-        >
-          <p className="text-gray-500 text-lg">No projects found in this category</p>
-        </motion.div>
-      )}
-    </div>
+        {filtered.length === 0 && (
+          <p className="text-cream-mute py-16 text-center">No projects in this category yet.</p>
+        )}
+      </div>
+    </section>
   );
 };
 
