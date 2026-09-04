@@ -44,7 +44,7 @@ const Header = () => {
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map(link => (
               <ScrollLink
-                key={link.to}
+                key={link.name}
                 to={link.to}
                 smooth={true}
                 duration={500}
@@ -74,7 +74,7 @@ const Header = () => {
           <div className="md:hidden bg-black w-full px-6 py-4 flex flex-col gap-3 border-t-2 border-cyan-400">
             {navLinks.map(link => (
               <ScrollLink
-                key={link.to}
+                key={link.name}
                 to={link.to}
                 smooth={true}
                 duration={500}
